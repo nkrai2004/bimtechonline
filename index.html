@@ -5,475 +5,390 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIMTECH Online | PGDM Admissions</title>
-<meta name="description" content="Explore BIMTECH Online PGDM programs. Enquire about fees, eligibility and admissions.">
+<meta name="description" content="Explore BIMTECH Online PGDM programs, fees, eligibility and admissions.">
 
 <style>
 :root {
   --navy:#102b4e;
-  --blue:#173e68;
+  --blue:#194773;
   --red:#c92d3b;
   --gold:#e6b65b;
   --light:#f4f7fb;
   --text:#172638;
   --muted:#627184;
 }
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-body {
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  color:var(--text);
-  line-height:1.6;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;color:var(--text);line-height:1.6}
+a{text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+.topbar{background:var(--navy);color:#fff;padding:8px 0;font-size:13px}
+.topbar .container{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.topbar a{color:white}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0}
+.logo{width:min(420px,65%);height:auto;object-fit:contain}
+.btn{display:inline-block;padding:13px 20px;border-radius:5px;font-weight:bold;border:0;cursor:pointer;text-align:center}
+.red{background:var(--red);color:white}
+.navy{background:var(--navy);color:white}
+.hero{background:linear-gradient(110deg,var(--navy),var(--blue));color:white}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center;padding:58px 0}
+.eyebrow{color:var(--gold);font-weight:bold;text-transform:uppercase;letter-spacing:2px;font-size:12px}
+h1{font-size:clamp(38px,5vw,60px);line-height:1.1;margin:18px 0}
+h1 span{color:var(--gold)}
+.hero-copy{font-size:18px;color:#e3eaf2}
+.pills{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+.pills span{border:1px solid #ffffff55;padding:7px 10px;border-radius:5px;font-size:12px}
+.lead-card{background:white;color:var(--text);padding:25px;border-radius:12px;box-shadow:0 15px 45px #0003}
+.lead-card h2{color:var(--navy);margin:0}
+.lead-card p{font-size:13px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:bold}
+input,select{padding:12px;border:1px solid #d8e0ea;border-radius:5px;width:100%;background:#fff}
+.consent{display:flex;gap:8px;margin:13px 0;font-size:11px;color:var(--muted)}
+.consent input{width:auto;margin-top:4px}
+.submit{width:100%;font-size:15px}
+.stats{padding:23px 0;border-bottom:1px solid #ddd}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{text-align:center;border-right:1px solid #ddd}
+.stat:last-child{border:0}
+.stat strong{display:block;color:var(--navy);font-size:24px}
+.stat span{font-size:12px;color:var(--muted)}
+section{padding:65px 0}
+.section-head{text-align:center;max-width:760px;margin:0 auto 35px}
+.section-head h2{color:var(--navy);font-size:clamp(28px,4vw,40px);line-height:1.2;margin:10px 0}
+.section-head p{color:var(--muted)}
+.light{background:var(--light)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{background:white;border:1px solid #dfe6ef;border-radius:10px;padding:25px}
+.card h3{color:var(--navy);font-size:24px}
+.card p,.card li{font-size:14px;color:var(--muted)}
+.card li{margin:7px 0}
+.tag{background:#fcebed;color:var(--red);padding:5px 9px;font-size:11px;font-weight:bold;border-radius:4px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{border:1px solid #dfe6ef;border-radius:9px;padding:22px}
+.feature h3{color:var(--navy)}
+.feature p{font-size:14px;color:var(--muted)}
+.image-section{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.image-section img{width:100%;height:330px;object-fit:cover;border-radius:12px}
+.image-section h2{font-size:34px;color:var(--navy);line-height:1.2}
+.image-section p{color:var(--muted)}
+.credentials{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.credential{background:#173b62;color:white;padding:20px 12px;text-align:center;border-radius:8px}
+.credential strong{display:block;color:var(--gold);font-size:18px}
+.credential span{font-size:12px}
+.fee-card{max-width:800px;margin:auto;background:var(--light);border:1px solid #dfe6ef;border-radius:10px;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.fee-card h3{color:var(--navy)}
+.fee{font-size:30px;font-weight:bold;color:var(--navy)}
+.fee small{display:block;font-size:12px;font-weight:normal}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.step{border:1px solid #dfe6ef;padding:20px;border-radius:8px}
+.step strong{color:var(--red);font-size:23px}
+.step h3{color:var(--navy);font-size:16px}
+.step p{font-size:13px;color:var(--muted)}
+.faq{max-width:850px;margin:auto}
+details{border-bottom:1px solid #ddd;padding:17px 0}
+summary{cursor:pointer;font-weight:bold;color:var(--navy)}
+details p{color:var(--muted);font-size:14px}
+.cta{background:#eef3f8}
+.cta-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.cta h2{color:var(--navy)}
+.note{font-size:11px;color:var(--muted);max-width:850px;margin:15px auto}
+footer{background:#0b2039;color:#d5dfeb;padding:30px 0}
+footer p{font-size:12px}
+footer a{color:white}
+.whatsapp{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#20bd64;color:white;display:grid;place-items:center;font-size:27px;z-index:20;box-shadow:0 5px 20px #0003}
+.mobile-bar{display:none}
+@media(max-width:850px){
+ .hero-grid{grid-template-columns:1fr}
+ .lead-card{max-width:600px;width:100%;margin:auto}
+ .features{grid-template-columns:repeat(2,1fr)}
+ .credentials{grid-template-columns:repeat(2,1fr)}
+ .steps{grid-template-columns:repeat(2,1fr)}
 }
-a {text-decoration:none}
-.container {width:min(1160px,92%);margin:auto}
-.topbar {
-  background:var(--navy);color:#fff;
-  padding:8px 0;font-size:13px;
-}
-.topbar .container {
-  display:flex;justify-content:space-between;gap:12px;
-  flex-wrap:wrap;
-}
-.topbar a {color:#fff;font-weight:bold}
-header {
-  display:flex;align-items:center;
-  justify-content:space-between;gap:20px;
-  padding:14px 0;min-height:85px;
-}
-.logo {width:min(420px,60%);height:auto;max-height:68px;object-fit:contain;object-position:left}
-.btn {
-  display:inline-block;padding:13px 20px;
-  border:0;border-radius:5px;font-weight:bold;
-  cursor:pointer;text-align:center;
-}
-.btn-red {background:var(--red);color:#fff}
-.btn-navy {background:var(--navy);color:#fff}
-.hero {
-  color:#fff;
-  background:linear-gradient(115deg,var(--navy),var(--blue));
-}
-.hero-grid {
-  display:grid;grid-template-columns:1.1fr .9fr;
-  gap:45px;align-items:center;padding:65px 0;
-}
-.eyebrow {
-  color:var(--gold);font-size:12px;
-  font-weight:bold;letter-spacing:2px;text-transform:uppercase;
-}
-h1 {font-size:clamp(38px,5vw,60px);line-height:1.1;margin:18px 0}
-h1 span {color:var(--gold)}
-.hero-copy {font-size:18px;color:#e3eaf2}
-.checks {padding-left:20px;color:#fff}
-.checks li {margin:8px 0}
-.lead-card {
-  background:#fff;color:var(--text);
-  padding:27px;border-radius:12px;
-  box-shadow:0 20px 55px #0003;
-}
-.lead-card h2 {color:var(--navy);margin:0 0 5px}
-.lead-card p {color:var(--muted);font-size:13px;margin-top:5px}
-.form-grid {
-  display:grid;grid-template-columns:1fr 1fr;gap:13px;
-}
-.field {display:flex;flex-direction:column;gap:5px}
-.field.full {grid-column:1/-1}
-label {font-size:12px;font-weight:bold}
-input,select {
-  width:100%;padding:12px;
-  border:1px solid #d8e0ea;border-radius:5px;
-  background:#fbfcfe;font-size:14px;
-}
-.consent {
-  display:flex;gap:8px;align-items:flex-start;
-  font-size:11px;color:var(--muted);margin:14px 0;
-}
-.consent input {width:auto;margin-top:4px}
-.submit {width:100%;font-size:15px}
-.stats {padding:25px 0;border-bottom:1px solid #ddd}
-.stats-grid {
-  display:grid;grid-template-columns:repeat(4,1fr);gap:15px;
-}
-.stat {text-align:center;border-right:1px solid #ddd}
-.stat:last-child {border:0}
-.stat strong {display:block;font-size:25px;color:var(--navy)}
-.stat span {font-size:12px;color:var(--muted)}
-section {padding:65px 0}
-.section-head {text-align:center;max-width:720px;margin:0 auto 35px}
-.section-head h2 {font-size:clamp(28px,4vw,40px);color:var(--navy);line-height:1.2}
-.section-head p {color:var(--muted)}
-.programs {background:var(--light)}
-.cards {display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.card {
-  background:#fff;border:1px solid #dfe6ef;
-  border-radius:10px;padding:25px;
-}
-.card h3 {font-size:24px;color:var(--navy);margin:10px 0}
-.card p,.card li {font-size:14px;color:var(--muted)}
-.card li {margin:7px 0}
-.tag {
-  display:inline-block;background:#fcebed;color:var(--red);
-  padding:5px 9px;border-radius:4px;font-size:11px;
-  font-weight:bold;text-transform:uppercase;
-}
-.features {
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-}
-.feature {
-  border:1px solid #dfe6ef;border-radius:9px;padding:22px;
-}
-.feature h3 {color:var(--navy);font-size:17px}
-.feature p {color:var(--muted);font-size:14px}
-.credibility {background:var(--navy);color:#fff}
-.credibility h2 {color:#fff}
-.credibility .section-head p {color:#d5dfeb}
-.credentials {
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
-}
-.credential {
-  text-align:center;padding:20px 12px;
-  border:1px solid #ffffff35;border-radius:8px;
-}
-.credential strong {display:block;color:var(--gold);font-size:17px}
-.credential span {font-size:12px}
-.fee-card {
-  max-width:800px;margin:auto;padding:28px;
-  border:1px solid #dfe6ef;border-radius:10px;
-  display:flex;justify-content:space-between;
-  align-items:center;gap:20px;background:var(--light);
-}
-.fee-card h3 {color:var(--navy);margin:0}
-.fee {font-size:29px;font-weight:bold;color:var(--navy)}
-.fee small {display:block;font-size:12px;font-weight:normal}
-.note {font-size:11px;color:var(--muted);max-width:800px;margin:15px auto}
-.cta {background:var(--light)}
-.cta-inner {
-  display:flex;justify-content:space-between;
-  align-items:center;gap:20px;
-}
-.cta h2 {color:var(--navy)}
-.faq {max-width:850px;margin:auto}
-details {padding:17px 0;border-bottom:1px solid #ddd}
-summary {font-weight:bold;color:var(--navy);cursor:pointer}
-details p {color:var(--muted);font-size:14px}
-footer {background:#0b2039;color:#d5dfeb;padding:30px 0}
-footer p {font-size:12px}
-footer a {color:#fff}
-.whatsapp {
-  position:fixed;right:20px;bottom:20px;z-index:10;
-  background:#20bd64;color:#fff;border-radius:50%;
-  width:60px;height:60px;display:grid;place-items:center;
-  font-size:27px;box-shadow:0 5px 20px #0003;
-}
-.mobile-bar {display:none}
-
-@media(max-width:850px) {
-  .hero-grid {grid-template-columns:1fr;gap:30px;padding:45px 0}
-  .lead-card {max-width:600px;width:100%;margin:auto}
-  .features {grid-template-columns:repeat(2,1fr)}
-  .credentials {grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px) {
-  header {min-height:70px}
-  .logo {width:65%;max-height:55px}
-  header .btn {font-size:11px;padding:10px}
-  .hero-grid {padding:35px 0}
-  .hero-copy {font-size:16px}
-  .lead-card {padding:20px}
-  .form-grid,.cards,.features {grid-template-columns:1fr}
-  .field.full {grid-column:auto}
-  .stats-grid {grid-template-columns:repeat(2,1fr);row-gap:20px}
-  .stat:nth-child(2) {border:0}
-  .stat strong {font-size:22px}
-  .credentials {grid-template-columns:repeat(2,1fr)}
-  .fee-card,.cta-inner {align-items:flex-start;flex-direction:column}
-  section {padding:48px 0}
-  .mobile-bar {
-    display:flex;position:fixed;bottom:0;left:0;right:0;
-    z-index:9;background:#fff;border-top:1px solid #ddd;
-    padding:8px;gap:8px;
-  }
-  .mobile-bar a {flex:1;font-size:12px;padding:12px 5px}
-  body {padding-bottom:60px}
-  .whatsapp {right:15px;bottom:75px;width:53px;height:53px}
+@media(max-width:600px){
+ header{min-height:65px}
+ .logo{width:65%}
+ .hero-grid{padding:38px 0}
+ .hero-copy{font-size:16px}
+ .form-grid,.cards,.features,.image-section{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .stats-grid{grid-template-columns:repeat(2,1fr);row-gap:20px}
+ .stat:nth-child(2){border:0}
+ section{padding:45px 0}
+ .fee-card,.cta-row{align-items:flex-start;flex-direction:column}
+ .steps{grid-template-columns:1fr}
+ .image-section img{height:240px}
+ .mobile-bar{display:flex;position:fixed;bottom:0;left:0;right:0;background:white;padding:8px;gap:8px;z-index:15;border-top:1px solid #ddd}
+ .mobile-bar a{flex:1;font-size:12px;padding:12px 5px}
+ body{padding-bottom:60px}
+ .whatsapp{bottom:75px;right:15px}
 }
 </style>
 </head>
 
 <body>
 <div class="topbar">
-  <div class="container">
-    <span>Take the next step in your management career</span>
-    <span>Admissions: <a href="tel:+9107965800499">07965 800499</a></span>
-  </div>
+ <div class="container">
+  <span>Build your next career chapter with BIMTECH Online</span>
+  <span>Admissions: <a href="tel:+9107965800499">07965 800499</a></span>
+ </div>
 </div>
 
 <header class="container">
-  <a href="#home" aria-label="BIMTECH Online">
-    <img class="logo" src="bimtech-logo.webp"
-      alt="BIMTECH — Birla Institute of Management Technology">
-  </a>
-  <a class="btn btn-red" href="#lead-form">Enquire Now</a>
+ <a href="#home">
+  <img class="logo" src="images/bimtech-logo.webp" alt="BIMTECH official logo">
+ </a>
+ <a class="btn red" href="#enquire">Enquire Now</a>
 </header>
 
 <main>
 <section class="hero" id="home">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow">BIMTECH Online PGDM</div>
-      <h1>Make your next career move <span>count.</span></h1>
-      <p class="hero-copy">
-        Build management capabilities with a flexible,
-        career-focused online PGDM designed for ambitious
-        working professionals.
-      </p>
-      <ul class="checks">
-        <li>Flexible online learning</li>
-        <li>Industry-aligned curriculum</li>
-        <li>Dual specialization options</li>
-        <li>Career-focused learning</li>
-      </ul>
-      <a class="btn btn-red" href="#lead-form">Get Program Details →</a>
-    </div>
-
-    <div class="lead-card" id="lead-form">
-      <h2>Find the right program for you</h2>
-      <p>Submit your details to connect with our admissions team on WhatsApp.</p>
-
-      <form id="leadForm">
-        <div class="form-grid">
-          <div class="field">
-            <label for="firstName">First name *</label>
-            <input id="firstName" name="firstName"
-              placeholder="Your first name" autocomplete="given-name" required>
-          </div>
-          <div class="field">
-            <label for="lastName">Last name</label>
-            <input id="lastName" name="lastName"
-              placeholder="Your last name" autocomplete="family-name">
-          </div>
-          <div class="field">
-            <label for="mobile">Mobile number *</label>
-            <input id="mobile" name="mobile" type="tel"
-              placeholder="Your mobile number" autocomplete="tel"
-              pattern="[0-9+() -]{8,18}" required>
-          </div>
-          <div class="field">
-            <label for="email">Email address *</label>
-            <input id="email" name="email" type="email"
-              placeholder="you@example.com" autocomplete="email" required>
-          </div>
-          <div class="field full">
-            <label for="program">Program of interest *</label>
-            <select id="program" name="program" required>
-              <option value="">Select a program</option>
-              <option>Online PGDM</option>
-              <option>Online PGDM with Dual Specialization</option>
-              <option>Need help choosing</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="state">State / region</label>
-            <select id="state" name="state">
-              <option value="">Select region</option>
-              <option>Delhi NCR</option>
-              <option>Uttar Pradesh</option>
-              <option>Maharashtra</option>
-              <option>Karnataka</option>
-              <option>Telangana</option>
-              <option>Tamil Nadu</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="experience">Work experience</label>
-            <select id="experience" name="experience">
-              <option value="">Select experience</option>
-              <option>Fresher</option>
-              <option>Less than 2 years</option>
-              <option>2–5 years</option>
-              <option>6–10 years</option>
-              <option>10+ years</option>
-            </select>
-          </div>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" name="consent" required>
-          <span>I agree to be contacted about program information and admissions. *</span>
-        </label>
-
-        <button class="btn btn-red submit" type="submit">
-          Continue on WhatsApp →
-        </button>
-        <p>Your enquiry details will be added to a WhatsApp message. You must press Send in WhatsApp.</p>
-      </form>
-    </div>
+ <div class="container hero-grid">
+  <div>
+   <div class="eyebrow">BIMTECH Online PGDM</div>
+   <h1>Take your career forward with <span>management learning.</span></h1>
+   <p class="hero-copy">Explore online PGDM options designed to help professionals develop management knowledge, practical skills and a broader business perspective.</p>
+   <div class="pills">
+    <span>Online learning</span>
+    <span>Industry-aligned curriculum</span>
+    <span>Dual specialization option</span>
+   </div>
+   <a class="btn red" href="#enquire">Get Program Details →</a>
   </div>
+
+  <div class="lead-card" id="enquire">
+   <h2>Get Program Details</h2>
+   <p>Share your details to connect with our admissions team on WhatsApp.</p>
+   <form id="leadForm">
+    <div class="form-grid">
+     <div class="field">
+      <label for="firstName">First name *</label>
+      <input id="firstName" name="firstName" required placeholder="First name">
+     </div>
+     <div class="field">
+      <label for="lastName">Last name</label>
+      <input id="lastName" name="lastName" placeholder="Last name">
+     </div>
+     <div class="field">
+      <label for="mobile">Mobile number *</label>
+      <input id="mobile" name="mobile" type="tel" required placeholder="Mobile number">
+     </div>
+     <div class="field">
+      <label for="email">Email *</label>
+      <input id="email" name="email" type="email" required placeholder="Email address">
+     </div>
+     <div class="field full">
+      <label for="program">Program of interest *</label>
+      <select id="program" name="program" required>
+       <option value="">Select a program</option>
+       <option>Online PGDM</option>
+       <option>PGDM with Dual Specialization</option>
+       <option>Need help choosing</option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="state">State / region</label>
+      <select id="state" name="state">
+       <option value="">Select region</option>
+       <option>Delhi NCR</option><option>Uttar Pradesh</option>
+       <option>Maharashtra</option><option>Karnataka</option>
+       <option>Telangana</option><option>Tamil Nadu</option>
+       <option>Other</option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="experience">Work experience</label>
+      <select id="experience" name="experience">
+       <option value="">Select</option>
+       <option>Fresher</option><option>Less than 2 years</option>
+       <option>2–5 years</option><option>6–10 years</option>
+       <option>10+ years</option>
+      </select>
+     </div>
+    </div>
+    <label class="consent">
+     <input type="checkbox" required>
+     <span>I agree to be contacted about program information and admissions.</span>
+    </label>
+    <button class="btn red submit" type="submit">Continue on WhatsApp →</button>
+    <p>WhatsApp opens with a pre-filled message. Please press Send to share your enquiry.</p>
+   </form>
+  </div>
+ </div>
 </section>
 
 <div class="stats">
-  <div class="container stats-grid">
-    <div class="stat"><strong>36+ Years</strong><span>Academic experience*</span></div>
-    <div class="stat"><strong>7,000+</strong><span>Alumni network*</span></div>
-    <div class="stat"><strong>Online</strong><span>Flexible learning format</span></div>
-    <div class="stat"><strong>Career</strong><span>Focused management learning</span></div>
-  </div>
+ <div class="container stats-grid">
+  <div class="stat"><strong>36+ Years</strong><span>Academic experience*</span></div>
+  <div class="stat"><strong>7,000+</strong><span>Alumni network*</span></div>
+  <div class="stat"><strong>Online</strong><span>Flexible learning format</span></div>
+  <div class="stat"><strong>PGDM</strong><span>Management learning</span></div>
+ </div>
 </div>
 
-<section class="programs" id="programs">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Programs</div>
-      <h2>Choose the learning path that fits your goals</h2>
-      <p>Explore available PGDM options and discuss eligibility, fees and specializations with an admissions counsellor.</p>
-    </div>
-
-    <div class="cards">
-      <article class="card">
-        <span class="tag">Career focused</span>
-        <h3>Online PGDM</h3>
-        <p>Build core business and management knowledge while balancing professional commitments.</p>
-        <ul>
-          <li>Flexible online learning</li>
-          <li>Industry-aligned curriculum</li>
-          <li>Applied management concepts</li>
-          <li>Ask about available career support</li>
-        </ul>
-        <a class="btn btn-navy program-link" data-program="Online PGDM" href="#lead-form">Enquire Now →</a>
-      </article>
-
-      <article class="card">
-        <span class="tag">Broaden your profile</span>
-        <h3>PGDM with Dual Specialization</h3>
-        <p>Explore complementary areas of management based on your professional interests and goals.</p>
-        <ul>
-          <li>Explore specialization combinations</li>
-          <li>Practical management learning</li>
-          <li>Designed for working professionals</li>
-          <li>Confirm available options with admissions</li>
-        </ul>
-        <a class="btn btn-navy program-link"
-          data-program="Online PGDM with Dual Specialization"
-          href="#lead-form">Explore Options →</a>
-      </article>
-    </div>
+<section>
+ <div class="container image-section">
+  <img src="images/bimtech-campus.jpg" alt="BIMTECH campus">
+  <div>
+   <div class="eyebrow">The BIMTECH experience</div>
+   <h2>Management education for a changing business world</h2>
+   <p>Explore a learning experience that connects management concepts with practical business perspectives. Ask admissions about the current curriculum, faculty sessions and learning activities.</p>
+   <a class="btn red" href="#enquire">Request the Brochure →</a>
   </div>
+ </div>
 </section>
 
-<section id="why-bimtech">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Why BIMTECH Online</div>
-      <h2>Learning designed around your next step</h2>
-      <p>Explore management learning that connects business concepts with practical workplace applications.</p>
-    </div>
-
-    <div class="features">
-      <article class="feature"><h3>Industry-aligned curriculum</h3><p>Develop business knowledge and practical management skills.</p></article>
-      <article class="feature"><h3>Faculty and mentors</h3><p>Understand the academic and practitioner guidance available in the program.</p></article>
-      <article class="feature"><h3>Flexible online format</h3><p>Ask admissions about the current schedule and study commitments.</p></article>
-      <article class="feature"><h3>Practical learning</h3><p>Explore cases and applied activities included in the curriculum.</p></article>
-      <article class="feature"><h3>Specialization options</h3><p>Discuss available combinations that fit your career direction.</p></article>
-      <article class="feature"><h3>Career guidance</h3><p>Ask about current career support and placement assistance provisions.</p></article>
-    </div>
+<section class="light" id="programs">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Programs</div>
+   <h2>Choose the learning path that fits your goals</h2>
+   <p>Explore the available program options and confirm the latest details with admissions.</p>
   </div>
+  <div class="cards">
+   <article class="card">
+    <span class="tag">Core management</span>
+    <h3>Online PGDM</h3>
+    <p>Build business and management knowledge while balancing your professional commitments.</p>
+    <ul>
+     <li>Flexible online learning</li>
+     <li>Industry-aligned curriculum</li>
+     <li>Applied management concepts</li>
+     <li>Ask about available career support</li>
+    </ul>
+    <a class="btn navy choose-program" data-program="Online PGDM" href="#enquire">Enquire Now →</a>
+   </article>
+   <article class="card">
+    <span class="tag">Broaden your expertise</span>
+    <h3>PGDM with Dual Specialization</h3>
+    <p>Explore complementary management disciplines to broaden your professional profile.</p>
+    <ul>
+     <li>Explore specialization combinations</li>
+     <li>Career-focused learning</li>
+     <li>Practical business application</li>
+     <li>Confirm availability with admissions</li>
+    </ul>
+    <a class="btn navy choose-program" data-program="PGDM with Dual Specialization" href="#enquire">Explore Options →</a>
+   </article>
+  </div>
+ </div>
 </section>
 
-<section class="credibility">
-  <div class="container">
-    <div class="section-head">
-      <h2>Institutional credentials</h2>
-      <p>Confirm the applicable accreditation and recognition details for the specific program before applying.</p>
-    </div>
-    <div class="credentials">
-      <div class="credential"><strong>NAAC</strong><span>Verify current institutional status</span></div>
-      <div class="credential"><strong>NBA</strong><span>Verify applicable scope</span></div>
-      <div class="credential"><strong>AACSB</strong><span>Verify current credential and scope</span></div>
-      <div class="credential"><strong>EFMD BSIS</strong><span>Verify applicable status</span></div>
-    </div>
+<section id="highlights">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Program highlights</div>
+   <h2>Learning built around professional growth</h2>
+   <p>Confirm which features are included in the current program and delivery schedule.</p>
   </div>
+  <div class="features">
+   <article class="feature"><h3>Industry-aligned curriculum</h3><p>Explore business concepts and practical management skills.</p></article>
+   <article class="feature"><h3>Faculty and mentors</h3><p>Ask about faculty sessions and practitioner perspectives.</p></article>
+   <article class="feature"><h3>Flexible online format</h3><p>Understand the class schedule and assessment requirements.</p></article>
+   <article class="feature"><h3>Practical learning</h3><p>Explore cases, workshops and applied activities where included.</p></article>
+   <article class="feature"><h3>Specialization options</h3><p>Discuss available combinations for your career goals.</p></article>
+   <article class="feature"><h3>Career guidance</h3><p>Ask about current career services and applicable conditions.</p></article>
+  </div>
+ </div>
 </section>
 
-<section id="fees">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Fees and financing</div>
-      <h2>Plan your investment in learning</h2>
-      <p>Request the latest fee, eligibility, payment schedule and financing options from admissions.</p>
-    </div>
-    <div class="fee-card">
-      <div>
-        <h3>Online PGDM</h3>
-        <p>Confirm current program fee and payment terms before applying.</p>
-      </div>
-      <div class="fee">
-        ₹1,95,000
-        <small>Indicative fee from reference website*</small>
-        <small>EMI advertised from ₹5,500/month*</small>
-      </div>
-    </div>
-    <p class="note">*Verify all fee, EMI, accreditation, placement and outcome claims before publishing. Financing depends on eligibility and lender terms.</p>
+<section class="light">
+ <div class="container image-section">
+  <div>
+   <div class="eyebrow">Learning experience</div>
+   <h2>Build a practical management toolkit</h2>
+   <p>Explore themes such as strategy, leadership, marketing, finance, people management, analytics and operations. Request the official syllabus for the current course list.</p>
+   <a class="btn red" href="#enquire">Get Curriculum Details →</a>
   </div>
+  <img src="images/online-learning.jpg" alt="Professional learning online">
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Institutional credentials</div>
+   <h2>Explore BIMTECH's institutional profile</h2>
+   <p>Confirm current status and applicability of institutional credentials to the selected program.</p>
+  </div>
+  <div class="credentials">
+   <div class="credential"><strong>NAAC</strong><span>Verify current status</span></div>
+   <div class="credential"><strong>NBA</strong><span>Verify applicable scope</span></div>
+   <div class="credential"><strong>AACSB</strong><span>Verify current claim and scope</span></div>
+   <div class="credential"><strong>EFMD BSIS</strong><span>Verify current status</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="light" id="fees">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Fees and financing</div>
+   <h2>Plan your investment in learning</h2>
+   <p>Confirm current fees, payment schedules and financing options before applying.</p>
+  </div>
+  <div class="fee-card">
+   <div><h3>Online PGDM</h3><p>Indicative fee from the reference website*</p></div>
+   <div class="fee">₹1,95,000<small>Full program fee*</small><small>EMI from ₹5,500/month*</small></div>
+  </div>
+  <p class="note">*Verify current fee, taxes, financing eligibility, EMI terms and refund policy with BIMTECH Online before publication.</p>
+  <div style="text-align:center"><a class="btn red" href="#enquire">Get Fee Details →</a></div>
+ </div>
+</section>
+
+<section id="admissions">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Admissions process</div>
+   <h2>Your journey from enquiry to enrolment</h2>
+  </div>
+  <div class="steps">
+   <div class="step"><strong>01</strong><h3>Submit an enquiry</h3><p>Share your contact details and program preference.</p></div>
+   <div class="step"><strong>02</strong><h3>Speak to admissions</h3><p>Discuss eligibility, fees and program structure.</p></div>
+   <div class="step"><strong>03</strong><h3>Complete application</h3><p>Follow the official process and submit documents.</p></div>
+   <div class="step"><strong>04</strong><h3>Confirm enrolment</h3><p>Complete verification and payment as instructed.</p></div>
+  </div>
+ </div>
 </section>
 
 <section class="cta">
-  <div class="container cta-inner">
-    <div>
-      <h2>Your next career chapter starts here.</h2>
-      <p>Get program details, eligibility information and admission guidance.</p>
-    </div>
-    <a class="btn btn-red" href="#lead-form">Talk to a Counsellor →</a>
-  </div>
+ <div class="container cta-row">
+  <div><h2>Ready to take your next career step?</h2><p>Request program details and speak with admissions.</p></div>
+  <a class="btn red" href="#enquire">Talk to a Counsellor →</a>
+ </div>
 </section>
 
-<section id="faq">
-  <div class="container">
-    <div class="section-head">
-      <h2>Frequently asked questions</h2>
-    </div>
-    <div class="faq">
-      <details>
-        <summary>Can I study while working?</summary>
-        <p>The program is presented as an online learning option. Ask admissions about class schedules and assessment requirements.</p>
-      </details>
-      <details>
-        <summary>How do I choose a specialization?</summary>
-        <p>Submit the enquiry form and ask the admissions team about currently available specialization combinations.</p>
-      </details>
-      <details>
-        <summary>How do I get the latest fee details?</summary>
-        <p>Submit the form to request the current fee, payment schedule and available financing options.</p>
-      </details>
-      <details>
-        <summary>Will the form automatically save leads?</summary>
-        <p>No. This version opens WhatsApp with a pre-filled message. Automatic storage in Salesforce or a database requires a secure backend integration.</p>
-      </details>
-    </div>
+<section>
+ <div class="container">
+  <div class="section-head"><h2>Frequently asked questions</h2></div>
+  <div class="faq">
+   <details><summary>Can I study while working?</summary><p>The program is offered in an online format. Ask admissions about class schedules and assessment requirements.</p></details>
+   <details><summary>What is the program fee?</summary><p>The reference website displays ₹1,95,000 and EMI starting at ₹5,500 per month. Confirm current terms with admissions.</p></details>
+   <details><summary>How do I choose a specialization?</summary><p>Submit the enquiry form and ask about currently available specialization combinations.</p></details>
+   <details><summary>Does this form store leads in a database?</summary><p>No. This version opens WhatsApp with a pre-filled message. Automatic CRM storage requires a secure backend integration.</p></details>
   </div>
+ </div>
 </section>
 </main>
 
 <footer>
-  <div class="container">
-    <strong>BIMTECH Online — PGDM Enquiries</strong>
-    <p>Confirm program information, official branding, fees and claims with the authorized institution before publishing.</p>
-    <p>Admissions: <a href="tel:+9107965800499">07965 800499</a></p>
-    <p>© <span id="year"></span> BIMTECH Online</p>
-  </div>
+ <div class="container">
+  <strong>BIMTECH Online — PGDM Enquiries</strong>
+  <p>Verify program details, fees, credentials and marketing claims with the authorized institution before publishing.</p>
+  <p>Admissions: <a href="tel:+9107965800499">07965 800499</a></p>
+  <p>© <span id="year"></span> BIMTECH Online</p>
+ </div>
 </footer>
 
-<!-- Floating WhatsApp enquiry button -->
-<a class="whatsapp" id="whatsappButton" href="#"
-   aria-label="Chat with BIMTECH Online admissions">☏</a>
-
+<a class="whatsapp" id="whatsappButton" href="#" aria-label="Chat on WhatsApp">☏</a>
 <div class="mobile-bar">
-  <a class="btn btn-navy" href="#programs">Explore Programs</a>
-  <a class="btn btn-red" href="#lead-form">Get Details</a>
+ <a class="btn navy" href="#programs">Explore Programs</a>
+ <a class="btn red" href="#enquire">Get Details</a>
 </div>
 
 <script>
-/* WhatsApp number: country code + number, digits only */
 const WHATSAPP_NUMBER = "918745863882";
 
 function openWhatsApp(message) {
@@ -484,29 +399,27 @@ function openWhatsApp(message) {
 
 document.getElementById("leadForm").addEventListener("submit", function(event) {
   event.preventDefault();
-
   if (!this.reportValidity()) return;
 
-  const data = new FormData(this);
-
+  const d = new FormData(this);
   const message = [
     "Hello BIMTECH Online Admissions Team,",
-    "I would like to know more about the online PGDM program.",
+    "I would like details about the online PGDM program.",
     "",
-    "Name: " + data.get("firstName") + " " + (data.get("lastName") || ""),
-    "Mobile: " + data.get("mobile"),
-    "Email: " + data.get("email"),
-    "Program: " + data.get("program"),
-    "State/Region: " + (data.get("state") || "Not specified"),
-    "Work Experience: " + (data.get("experience") || "Not specified"),
+    "Name: " + d.get("firstName") + " " + (d.get("lastName") || ""),
+    "Mobile: " + d.get("mobile"),
+    "Email: " + d.get("email"),
+    "Program: " + d.get("program"),
+    "Region: " + (d.get("state") || "Not specified"),
+    "Experience: " + (d.get("experience") || "Not specified"),
     "",
-    "Please share the current eligibility, fees, specializations and admission process."
+    "Please share the current syllabus, eligibility, fees and admission process."
   ].join("\n");
 
   openWhatsApp(message);
 });
 
-document.querySelectorAll(".program-link").forEach(function(link) {
+document.querySelectorAll(".choose-program").forEach(function(link) {
   link.addEventListener("click", function() {
     document.getElementById("program").value = this.dataset.program;
   });
@@ -514,9 +427,7 @@ document.querySelectorAll(".program-link").forEach(function(link) {
 
 document.getElementById("whatsappButton").addEventListener("click", function(event) {
   event.preventDefault();
-  openWhatsApp(
-    "Hello BIMTECH Online Admissions Team. Please share the current online PGDM program details, eligibility, fees and specialization options."
-  );
+  openWhatsApp("Hello BIMTECH Online Admissions Team. Please share the current PGDM program details, fees and eligibility.");
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
