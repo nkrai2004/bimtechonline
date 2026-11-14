@@ -100,3 +100,20 @@ Meta approval, template approval, messaging policy compliance and applicable Wha
 - Outbound messages are sent only through the official API and permitted message window/template rules.
 - Failed webhook deliveries can be retried without creating duplicate messages.
 - No production credentials or lead personal data are committed to GitHub.
+
+
+## Confirmed initial setup preferences
+
+- Primary device: iPhone
+- Initial CRM users: one administrator
+- Access: both mobile and computer
+- Initial WhatsApp number: +91 87458 63882 (existing WhatsApp Business account, owner-reported)
+
+## Development status
+
+- `crm/index.html` is an initial responsive, single-user dashboard prototype.
+- The prototype supports manually adding/editing leads, searching/filtering, stage tracking, follow-up dates and CSV export.
+- Prototype data is stored in the current browser's local storage only. It is not a secure production database and is not shared across devices.
+- Do not enter real student personal data in the prototype.
+- No website form changes have been made; the existing website lead form must not be switched to an API until the production backend is deployed and tested.
+- Next engineering step: implement the authenticated API and PostgreSQL persistence, then deploy the service and database. After that, connect website form capture and complete Meta's authorised WhatsApp onboarding. Production credentials must be configured as hosting secrets, never committed here.
