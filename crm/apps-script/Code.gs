@@ -157,21 +157,22 @@ function updateLead_(lead) {
   });
   if (rowIndex < 1) throw new Error("Lead not found.");
 
-  const allowed = {
-    "Full Name": clean_(lead.fullName, 120),
-    "Mobile": clean_(lead.mobile, 20),
-    "Email": clean_(lead.email, 150),
-    "Programme": clean_(lead.programme, 120),
-    "Stage": clean_(lead.stage, 40),
-    "Next Follow-up": clean_(lead.nextFollowUp, 40),
-    "Notes": clean_(lead.notes, 1000)
+  const fields = {
+    fullName: "Full Name",
+    mobile: "Mobile",
+    email: "Email",
+    programme: "Programme",
+    stage: "Stage",
+    nextFollowUp: "Next Follow-up",
+    notes: "Notes"
   };
-  Object.keys(allowed).forEach(function(header) {
-    if (lead[header] !== undefined || (
-      header === "Full Name" && lead.fullName !== undefined
-    )) {
-      const col = headers.indexOf(header);
-      if (col >= 0) sheet.getRange(rowIndex + 1, col + 1).setValue(allowed[header]);
+  Object.keys(fields).forEach(function(key) {
+    if (Object.prototype.hasOwnProperty.call(lead, key)) {
+      const col = headers.indexOf(fields[key]);
+      if (col >= 0) {
+        sheet.getRange(rowIndex + 1, col + 1)
+          .setValue(clean_(lead[key], key === "notes" ? 1000 : 150));
+      }
     }
   });
   sheet.getRange(rowIndex + 1, headers.indexOf("Updated At") + 1).setValue(new Date());
