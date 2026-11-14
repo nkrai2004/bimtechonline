@@ -7,8 +7,25 @@
 :root{--navy:#102b52;--blue:#1d5fa7;--bg:#f4f7fb;--ink:#182536;--muted:#66758a;--line:#e3e9f1}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}button,input,select,textarea{font:inherit}.top{background:var(--navy);color:#fff;padding:16px 22px;display:flex;justify-content:space-between}.brand{font-weight:750}.brand small{display:block;color:#c8d5e7;font-weight:400}.wrap{max-width:1180px;margin:auto;padding:24px 18px}.head{display:flex;justify-content:space-between;align-items:center;gap:12px}.head h1{margin:0;font-size:25px}.muted,.sub{color:var(--muted)}.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:650;cursor:pointer}.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:12px}.stat{padding:15px}.stat span{font-size:13px;color:var(--muted)}.stat strong{display:block;font-size:26px}.toolbar{display:flex;gap:9px;margin:16px 0;flex-wrap:wrap}.field{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:white;min-width:0}.toolbar input{flex:1;min-width:180px}.panel{overflow:hidden}.paneltop{padding:14px 16px;border-bottom:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:660px}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}th{background:#fafbfd;color:var(--muted)}.scroll{overflow:auto}.pill{background:#edf3fa;padding:4px 8px;border-radius:30px;font-size:11px}.empty{text-align:center;padding:30px;color:var(--muted)}.modal{display:none;position:fixed;inset:0;background:#081a30aa;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.dialog{background:white;padding:20px;border-radius:14px;width:min(520px,100%);max-height:92vh;overflow:auto}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.grid label{font-size:12px;color:var(--muted)}.grid input,.grid select,.grid textarea{display:block;width:100%;margin-top:4px}.wide{grid-column:1/-1}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.status{padding:10px 12px;margin:12px 0;border-radius:8px;background:#edf5ff;color:#214e7e}.error{background:#fff0ef;color:#9b2923}
 @media(max-width:650px){.wrap{padding:18px 12px}.stats{grid-template-columns:1fr 1fr}.head{align-items:flex-start}.head h1{font-size:21px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.top{padding:14px}.top .muted{display:none}}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 15% 10%,#244b78 0,#102b52 45%,#091d38 100%)}
+.login-card{width:min(430px,100%);background:#fff;border-radius:20px;padding:30px;box-shadow:0 24px 70px #06152c55}
+.login-mark{width:54px;height:54px;border-radius:14px;background:#102b52;color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px}
+.login-card h1{font-size:25px;line-height:1.2;margin:22px 0 8px;color:var(--navy)}
+.login-card p{color:var(--muted);margin:0 0 18px}
+.login-account{padding:12px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;font-weight:650;overflow-wrap:anywhere}
+.login-note{font-size:12px!important;line-height:1.55;margin-top:16px!important}
+.login-error{color:#9b2923!important;background:#fff0ef;padding:10px;border-radius:8px;display:none}
+#appShell{display:none}
+@media(max-width:520px){.login-card{padding:24px}}
 </style></head>
 <body>
+<section class="login-screen" id="loginScreen"><div class="login-card">
+ <div class="login-mark">B</div><h1>BIMTECH Online CRM</h1><p>Secure sign-in for the admissions team</p>
+ <div class="login-account" id="loginAccount">Checking your Google account…</div><p class="login-error" id="loginError"></p>
+ <button class="btn" id="loginRetry" style="width:100%;margin-top:18px">Verify access</button>
+ <p class="login-note">Use your authorised <b>info@bimtechonline.in</b> Google account. Access is controlled by Google sign-in and the private Apps Script deployment. No separate CRM password is used.</p>
+</div></section>
+<div id="appShell">
 <header class="top"><div class="brand">BIMTECH ONLINE<small>Admissions CRM</small></div><div class="muted" style="color:#dbe5f2">Private administrator workspace</div></header>
 <main class="wrap">
 <div class="head"><div><h1>Lead dashboard</h1><div class="sub">Manage enquiries, stages and follow-ups.</div></div><button class="btn" id="add">＋ Add lead</button></div>
@@ -17,6 +34,7 @@
 <div class="toolbar"><input class="field" id="search" placeholder="Search name or mobile"><select class="field" id="filter"><option value="">All stages</option><option>New</option><option>Contacted</option><option>Interested</option><option>Follow-up</option><option>Applied</option><option>Enrolled</option><option>Not Interested</option><option>Lost</option></select><button class="btn secondary" id="refresh">Refresh</button><button class="btn secondary" id="export">Export CSV</button></div>
 <section class="panel"><div class="paneltop"><b>All enquiries</b> <span class="muted" id="shown">0 records</span></div><div class="scroll"><table><thead><tr><th>LEAD</th><th>PROGRAMME</th><th>STAGE</th><th>FOLLOW-UP</th><th>CONTACT</th><th></th></tr></thead><tbody id="rows"></tbody></table><div class="empty" id="empty">No leads yet. Add your first enquiry.</div></div></section>
 </main>
+</div><!-- /appShell -->
 <div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Add lead</h2><form id="form"><input type="hidden" id="leadId"><div class="grid">
 <label>Full name *<input class="field" id="name" required maxlength="120"></label>
 <label>Mobile number *<input class="field" id="mobile" required inputmode="tel" placeholder="+91 98765 43210"></label>
@@ -29,6 +47,15 @@
 <script>
 let leads=[];
 const $=id=>document.getElementById(id);
+async function verifyLogin(){
+ $('loginRetry').disabled=true;$('loginAccount').textContent='Verifying Google account…';$('loginError').style.display='none';
+ try{
+  const session=await new Promise((resolve,reject)=>google.script.run.withSuccessHandler(resolve).withFailureHandler(reject).crmGetSessionInfo());
+  if(session.authenticated){$('loginAccount').textContent='Signed in as '+session.email;$('loginScreen').style.display='none';$('appShell').style.display='block';load();}
+  else{$('loginAccount').textContent=session.email||'Google account not detected';$('loginError').textContent='Access is restricted. Sign in to the Apps Script deployment using '+session.requiredEmail+'. If already signed in, check deployment setting: Execute as “User accessing the web app”.';$('loginError').style.display='block';}
+ }catch(e){$('loginAccount').textContent='Google sign-in is required';$('loginError').textContent=e.message||String(e);$('loginError').style.display='block';}
+ finally{$('loginRetry').disabled=false}
+}
 const stages=['New','Contacted','Interested','Follow-up','Applied','Enrolled','Not Interested','Lost'];
 function message(text,isError=false){$('status').textContent=text;$('status').className='status'+(isError?' error':'')}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -53,5 +80,6 @@ $('form').onsubmit=async e=>{e.preventDefault();$('save').disabled=true;try{
  $('modal').classList.remove('open');message('Lead saved to Google Sheets.');await load();
  }catch(err){message(err.message||String(err),true)}finally{$('save').disabled=false}};
 $('export').onclick=()=>{const cols=['Lead ID','Full Name','Mobile','Email','Programme','Stage','Next Follow-up','Notes'];const csv=[cols.join(','),...leads.map(x=>cols.map(k=>'"'+String(val(x,k)).replace(/"/g,'""')+'"').join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='bimtech-leads.csv';a.click();URL.revokeObjectURL(a.href)};
-load();
+$('loginRetry').onclick=verifyLogin;
+verifyLogin();
 </script></body></html>
