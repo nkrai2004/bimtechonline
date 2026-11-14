@@ -143,3 +143,14 @@ Test app/API coexistence, website capture, duplicate leads, inbound/outbound tex
 2. Choose and approve the public HTTPS integration-service host. This is required for secure webhook signature verification; GitHub Pages alone cannot do this.
 3. Complete a security review of the Apps Script identity check and deployment behaviour before real student data is entered.
 4. Confirm Meta Coexistence eligibility and test app/API message synchronisation before launch.
+
+
+## Login screen and access control update (2026-11-15)
+
+- Added a branded sign-in gate to the Apps Script CRM UI.
+- The CRM uses Google account sign-in; it does not collect or store a separate CRM password.
+- The only authorised account in the current single-admin setup is `info@bimtechonline.in`.
+- Backend data functions fail closed unless `Session.getActiveUser().getEmail()` exactly matches the authorised account.
+- Keep deployment access at **Only myself** and configure **Execute as: User accessing the web app**. If Apps Script cannot identify the active account, access is denied.
+- The sign-in screen is a UI layer, not a substitute for Google's deployment access control. Test sign-in and lead CRUD after redeployment before entering real student data.
+- An authorised BIMTECH Meta Business Portfolio administrator has agreed to participate; Meta onboarding and Coexistence eligibility remain pending.
