@@ -62,11 +62,24 @@ function setupCrm() {
 
 /** Basic backend health check. */
 function doGet() {
-  return jsonOutput_({
-    ok: true,
-    service: "BIMTECH Online CRM",
-    message: "Backend is running. Use the authorised CRM interface."
-  });
+  assertAllowedUser_();
+  return HtmlService.createHtmlOutputFromFile("Index")
+    .setTitle("BIMTECH Online Admissions CRM")
+    .addMetaTag("viewport", "width=device-width, initial-scale=1");
+}
+
+/** Public server functions called only by the authenticated Apps Script UI. */
+function crmListLeads() {
+  assertAllowedUser_();
+  return listLeads_();
+}
+function crmAddLead(lead) {
+  assertAllowedUser_();
+  return addLead_(lead || {});
+}
+function crmUpdateLead(lead) {
+  assertAllowedUser_();
+  return updateLead_(lead || {});
 }
 
 /**
