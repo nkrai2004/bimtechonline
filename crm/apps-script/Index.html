@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b52"><title>BIMTECH Online | Admissions CRM</title>
+<style>
+:root{--navy:#102b52;--blue:#1d5fa7;--bg:#f4f7fb;--ink:#182536;--muted:#66758a;--line:#e3e9f1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}button,input,select,textarea{font:inherit}.top{background:var(--navy);color:#fff;padding:16px 22px;display:flex;justify-content:space-between}.brand{font-weight:750}.brand small{display:block;color:#c8d5e7;font-weight:400}.wrap{max-width:1180px;margin:auto;padding:24px 18px}.head{display:flex;justify-content:space-between;align-items:center;gap:12px}.head h1{margin:0;font-size:25px}.muted,.sub{color:var(--muted)}.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:650;cursor:pointer}.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:12px}.stat{padding:15px}.stat span{font-size:13px;color:var(--muted)}.stat strong{display:block;font-size:26px}.toolbar{display:flex;gap:9px;margin:16px 0;flex-wrap:wrap}.field{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:white;min-width:0}.toolbar input{flex:1;min-width:180px}.panel{overflow:hidden}.paneltop{padding:14px 16px;border-bottom:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:660px}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}th{background:#fafbfd;color:var(--muted)}.scroll{overflow:auto}.pill{background:#edf3fa;padding:4px 8px;border-radius:30px;font-size:11px}.empty{text-align:center;padding:30px;color:var(--muted)}.modal{display:none;position:fixed;inset:0;background:#081a30aa;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.dialog{background:white;padding:20px;border-radius:14px;width:min(520px,100%);max-height:92vh;overflow:auto}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.grid label{font-size:12px;color:var(--muted)}.grid input,.grid select,.grid textarea{display:block;width:100%;margin-top:4px}.wide{grid-column:1/-1}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.status{padding:10px 12px;margin:12px 0;border-radius:8px;background:#edf5ff;color:#214e7e}.error{background:#fff0ef;color:#9b2923}
+@media(max-width:650px){.wrap{padding:18px 12px}.stats{grid-template-columns:1fr 1fr}.head{align-items:flex-start}.head h1{font-size:21px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.top{padding:14px}.top .muted{display:none}}
+</style></head>
+<body>
+<header class="top"><div class="brand">BIMTECH ONLINE<small>Admissions CRM</small></div><div class="muted" style="color:#dbe5f2">Private administrator workspace</div></header>
+<main class="wrap">
+<div class="head"><div><h1>Lead dashboard</h1><div class="sub">Manage enquiries, stages and follow-ups.</div></div><button class="btn" id="add">＋ Add lead</button></div>
+<div id="status" class="status">Connecting to your private Google Sheet…</div>
+<section class="stats"><div class="stat"><span>Total leads</span><strong id="total">0</strong></div><div class="stat"><span>New enquiries</span><strong id="newCount">0</strong></div><div class="stat"><span>Follow-ups due</span><strong id="dueCount">0</strong></div><div class="stat"><span>Enrolled</span><strong id="enrolled">0</strong></div></section>
+<div class="toolbar"><input class="field" id="search" placeholder="Search name or mobile"><select class="field" id="filter"><option value="">All stages</option><option>New</option><option>Contacted</option><option>Interested</option><option>Follow-up</option><option>Applied</option><option>Enrolled</option><option>Not Interested</option><option>Lost</option></select><button class="btn secondary" id="refresh">Refresh</button><button class="btn secondary" id="export">Export CSV</button></div>
+<section class="panel"><div class="paneltop"><b>All enquiries</b> <span class="muted" id="shown">0 records</span></div><div class="scroll"><table><thead><tr><th>LEAD</th><th>PROGRAMME</th><th>STAGE</th><th>FOLLOW-UP</th><th>CONTACT</th><th></th></tr></thead><tbody id="rows"></tbody></table><div class="empty" id="empty">No leads yet. Add your first enquiry.</div></div></section>
+</main>
+<div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Add lead</h2><form id="form"><input type="hidden" id="leadId"><div class="grid">
+<label>Full name *<input class="field" id="name" required maxlength="120"></label>
+<label>Mobile number *<input class="field" id="mobile" required inputmode="tel" placeholder="+91 98765 43210"></label>
+<label>Email<input class="field" id="email" type="email"></label>
+<label>Programme<select class="field" id="programme"><option>Online PGDM</option><option>Not decided</option></select></label>
+<label>Stage<select class="field" id="stage"><option>New</option><option>Contacted</option><option>Interested</option><option>Follow-up</option><option>Applied</option><option>Enrolled</option><option>Not Interested</option><option>Lost</option></select></label>
+<label>Next follow-up<input class="field" id="followup" type="date"></label>
+<label class="wide">Notes<textarea class="field" id="notes" rows="3" maxlength="1000"></textarea></label>
+</div><div class="actions"><button class="btn secondary" type="button" id="cancel">Cancel</button><button class="btn" id="save" type="submit">Save lead</button></div></form></div></div>
+<script>
+let leads=[];
+const $=id=>document.getElementById(id);
+const stages=['New','Contacted','Interested','Follow-up','Applied','Enrolled','Not Interested','Lost'];
+function message(text,isError=false){$('status').textContent=text;$('status').className='status'+(isError?' error':'')}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function call(fn,arg){return new Promise((resolve,reject)=>google.script.run.withSuccessHandler(resolve).withFailureHandler(reject)[fn](arg))}
+function val(x,k){return x[k]??''}
+function render(){
+ const q=$('search').value.toLowerCase(),f=$('filter').value;
+ const list=leads.filter(x=>(!f||val(x,'Stage')===f)&&(!q||(String(val(x,'Full Name'))+' '+String(val(x,'Mobile'))).toLowerCase().includes(q)));
+ $('total').textContent=leads.length;$('newCount').textContent=leads.filter(x=>val(x,'Stage')==='New').length;
+ const today=new Date().toISOString().slice(0,10);
+ $('dueCount').textContent=leads.filter(x=>val(x,'Next Follow-up')&&String(val(x,'Next Follow-up')).slice(0,10)<=today&&!['Enrolled','Lost','Not Interested'].includes(val(x,'Stage'))).length;
+ $('enrolled').textContent=leads.filter(x=>val(x,'Stage')==='Enrolled').length;$('shown').textContent=list.length+' records';$('empty').style.display=list.length?'none':'block';
+ $('rows').innerHTML=list.map(x=>'<tr><td><b>'+esc(val(x,'Full Name'))+'</b><div class="muted">'+esc(val(x,'Mobile'))+'</div></td><td>'+esc(val(x,'Programme'))+'</td><td><span class="pill">'+esc(val(x,'Stage'))+'</span></td><td>'+esc(String(val(x,'Next Follow-up')||'—').slice(0,10))+'</td><td><a href="https://wa.me/'+esc(String(val(x,'Mobile')).replace(/\D/g,''))+'" target="_blank" rel="noopener">WhatsApp</a></td><td><button class="btn secondary edit" data-id="'+esc(val(x,'Lead ID'))+'">Edit</button></td></tr>').join('');
+}
+async function load(){message('Loading leads from Google Sheets…');try{leads=await call('crmListLeads');render();message('Connected securely to your Google Sheet. '+leads.length+' lead(s) loaded.')}catch(e){message(e.message||String(e),true)}}
+function openForm(x){$('form').reset();$('leadId').value=x?val(x,'Lead ID'):'';$('modalTitle').textContent=x?'Edit lead':'Add lead';if(x){$('name').value=val(x,'Full Name');$('mobile').value=val(x,'Mobile');$('email').value=val(x,'Email');$('programme').value=val(x,'Programme')||'Online PGDM';$('stage').value=val(x,'Stage')||'New';$('followup').value=String(val(x,'Next Follow-up')||'').slice(0,10);$('notes').value=val(x,'Notes')}$('modal').classList.add('open')}
+$('add').onclick=()=>openForm();$('cancel').onclick=()=>$('modal').classList.remove('open');$('refresh').onclick=load;$('search').oninput=render;$('filter').onchange=render;
+$('rows').onclick=e=>{const b=e.target.closest('.edit');if(b){const x=leads.find(v=>val(v,'Lead ID')===b.dataset.id);if(x)openForm(x)}};
+$('form').onsubmit=async e=>{e.preventDefault();$('save').disabled=true;try{
+ const lead={leadId:$('leadId').value,fullName:$('name').value.trim(),mobile:$('mobile').value.trim(),email:$('email').value.trim(),programme:$('programme').value,stage:$('stage').value,nextFollowUp:$('followup').value,notes:$('notes').value.trim()};
+ if(lead.leadId)await call('crmUpdateLead',lead);else await call('crmAddLead',lead);
+ $('modal').classList.remove('open');message('Lead saved to Google Sheets.');await load();
+ }catch(err){message(err.message||String(err),true)}finally{$('save').disabled=false}};
+$('export').onclick=()=>{const cols=['Lead ID','Full Name','Mobile','Email','Programme','Stage','Next Follow-up','Notes'];const csv=[cols.join(','),...leads.map(x=>cols.map(k=>'"'+String(val(x,k)).replace(/"/g,'""')+'"').join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='bimtech-leads.csv';a.click();URL.revokeObjectURL(a.href)};
+load();
+</script></body></html>
