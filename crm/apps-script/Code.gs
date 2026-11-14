@@ -62,10 +62,16 @@ function setupCrm() {
 
 /** Basic backend health check. */
 function doGet() {
-  assertAllowedUser_();
+  // Google deployment access protects the page; data functions enforce identity again.
   return HtmlService.createHtmlOutputFromFile("Index")
     .setTitle("BIMTECH Online Admissions CRM")
     .addMetaTag("viewport", "width=device-width, initial-scale=1");
+}
+
+/** Minimal session result for the sign-in screen; never returns lead data. */
+function crmGetSessionInfo() {
+  const email = String(Session.getActiveUser().getEmail() || "").toLowerCase();
+  return { authenticated: email === CRM_CONFIG.ALLOWED_EMAIL, email: email, requiredEmail: CRM_CONFIG.ALLOWED_EMAIL };
 }
 
 /** Public server functions called only by the authenticated Apps Script UI. */
@@ -215,9 +221,10 @@ function getSheet_(name) {
 }
 
 function assertAllowedUser_() {
-  const email = Session.getEffectiveUser().getEmail();
-  if (email && email.toLowerCase() !== CRM_CONFIG.ALLOWED_EMAIL) {
-    throw new Error("This account is not authorised to access the CRM.");
+  // Fail closed. Deploy as "User accessing the web app" so ActiveUser is identifiable.
+  const email = String(Session.getActiveUser().getEmail() || "").toLowerCase();
+  if (email !== CRM_CONFIG.ALLOWED_EMAIL) {
+    throw new Error("Access denied. Sign in with " + CRM_CONFIG.ALLOWED_EMAIL + ".");
   }
 }
 
